@@ -1,0 +1,9 @@
+version: '2'
+services:
+  gym:
+    build: .
+#    command: /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --allow-root --ip='*' --port=8888 --no-browser
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/usr/local/gym
