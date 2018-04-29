@@ -6,8 +6,8 @@
 
 FROM python:3.6
 
-RUN apt-get update \
-    && apt-get install -y libav-tools \
+RUN apt-get update && \
+    apt-get install -y libav-tools \
     python-numpy \
     python-scipy \
     python-pyglet \
@@ -35,6 +35,16 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && easy_install pip
+
+
+# install ffmpeg
+# It is now available for Jessy as a backport: https://packages.debian.org/jessie-backports/ffmpeg
+RUN echo "deb http://ftp.uk.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
+
+RUN apt-get update && \
+    apt-get install -y ffmpeg \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/local/gym
 #RUN mkdir -p gym && touch gym/__init__.py
