@@ -79,6 +79,9 @@ def run_agent(env_id):
 
     # Close the env and write monitor result info to disk
     env.close()
+    # FIXME: should use hack
+    # before https://github.com/openai/gym/pull/1023 will be merged
+    env.env.close()
 
 
 run_agent('CartPole-v0')
